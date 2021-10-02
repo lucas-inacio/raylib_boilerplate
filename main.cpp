@@ -1,6 +1,7 @@
 #define RAYGUI_IMPLEMENTATION
 #define RAYGUI_SUPPORT_ICONS
 #include <raylib.h>
+#include <raygui.h>
 
 int main()
 {
@@ -29,6 +30,7 @@ int main()
         DrawGrid(20, 10.0f);
         EndMode3D();
 
+        GuiButton(Rectangle{ 20, 20, 300, 150 }, "Button");
         EndDrawing();
     }
 

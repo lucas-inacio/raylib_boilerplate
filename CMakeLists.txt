@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.1)
+
 
 project(joguinho_cpp)
 
@@ -21,12 +22,34 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 endif()
 
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/raylib/CMakeLists.txt")
-    message(FATAL_ERROR "The submodules were not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+    message(FATAL_ERROR "raylib was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 
+if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/raygui/src/raygui.h")
+    message(FATAL_ERROR "raygui was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+endif()
+
+# Raylib dependency
 add_subdirectory(external/raylib)
 
-target_include_directories(${PROJECT_NAME} PUBLIC external/raylib/src)
+# Windows specific configuration
+if (WIN32)
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+        target_link_options(${PROJECT_NAME}
+            PUBLIC "/ENTRY:mainCRTStartup" 
+            PUBLIC "/SUBSYSTEM:WINDOWS"
+        )
+    else()
+        target_link_options(${PROJECT_NAME}
+            PUBLIC "-Wl,--subsystem,windows"
+        )
+    endif()
+endif()
+
+target_include_directories(${PROJECT_NAME} 
+    PUBLIC external/raylib/src
+    PUBLIC external/raygui/src
+)
 
 target_link_directories(${PROJECT_NAME} PUBLIC external/raylib/src)
 
