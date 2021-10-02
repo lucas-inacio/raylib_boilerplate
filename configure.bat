@@ -1,1 +1,1 @@
-cmake -S . -B .\build\ -G "NMake Makefiles"
+cmake -DCMAKE_BUILD_TYPE=Release -S . -B .\build\ -G "NMake Makefiles"
