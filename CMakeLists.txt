@@ -31,3 +31,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC external/raylib/src)
 target_link_directories(${PROJECT_NAME} PUBLIC external/raylib/src)
 
 target_link_libraries(${PROJECT_NAME} raylib)
+
+set(CMAKE_INSTALL_PREFIX ${PROJECT_NAME})
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
