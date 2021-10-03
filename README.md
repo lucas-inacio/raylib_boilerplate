@@ -1,6 +1,6 @@
 # Boilerplate build configuration for raylib and raygui based projects
 * Includes raylib and raygui as submodules
-* On windows sets subsystem:windows (no need to defined WinMain entrypoint - tested with Visual studio and MinGW)
+* On windows sets subsystem:windows (no need to define WinMain entrypoint - tested with Visual studio and MinGW)
 
 ## Building
 From the repository root:
