@@ -39,6 +39,11 @@ if (WIN32)
             PUBLIC "/ENTRY:mainCRTStartup" 
             PUBLIC "/SUBSYSTEM:WINDOWS"
         )
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+        target_link_options(${PROJECT_NAME}
+            PUBLIC "-Wl,-entry:mainCRTStartup"
+            PUBLIC "-Wl,-subsystem:windows"
+        )
     else()
         target_link_options(${PROJECT_NAME}
             PUBLIC "-Wl,--subsystem,windows"
