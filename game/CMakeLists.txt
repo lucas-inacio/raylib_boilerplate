@@ -1,6 +1,6 @@
 find_package(Threads REQUIRED)
 add_executable(game src/game.cpp)
-target_link_libraries(game raylib Threads::Threads)
+target_link_libraries(game box2d raylib Threads::Threads)
 
 # Windows specific configuration
 if(WIN32)
